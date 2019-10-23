@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
+//获取井盖数据
 @RestController
 @RequestMapping("/device")
 public class DeviceController {

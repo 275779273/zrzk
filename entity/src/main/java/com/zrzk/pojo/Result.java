@@ -13,7 +13,8 @@ import java.util.List;
 public class Result implements Serializable {
     private Boolean success;
     private String message;
-    private List list=new ArrayList();
+    //private List list=new ArrayList();
+    private Object obj;
 
 
     public Result() {
@@ -24,10 +25,10 @@ public class Result implements Serializable {
         this.message = message;
     }
 
-    public Result(Boolean success, String message, List list) {
+    public Result(Boolean success, String message, Object obj) {
         this.success = success;
         this.message = message;
-        this.list = list;
+        this.obj = obj;
     }
 
 

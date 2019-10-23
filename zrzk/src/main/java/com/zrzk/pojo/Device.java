@@ -1,5 +1,6 @@
 package com.zrzk.pojo;
 
+//接收井盖数据
 import com.zrzk.utils.DateUtil;
 
 import java.io.Serializable;

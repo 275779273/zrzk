@@ -19,6 +19,14 @@ public class DeviceServiceImpl implements DeviceService {
             return deviceDao.save(device);
         }
         if(device.getColumn01().equals("20")){
+            //液位值单位转换 /1000
+            String column07 = device.getColumn07();
+            String column007 = Double.parseDouble(column07) /1000+"";
+            device.setColumn07(column007);
+            //温度值单位转换 /10
+            String column08 = device.getColumn08();
+            String column008 = Double.parseDouble(column08) / 10 + "";
+            device.setColumn08(column008);
             return deviceDao.save1(device);
         }
         System.out.println(device.getTimeStr());
