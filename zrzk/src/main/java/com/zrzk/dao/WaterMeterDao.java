@@ -13,7 +13,7 @@ public interface WaterMeterDao {
      *
      * @return
      */
-    @Select(value = "SELECT id,genreId,genreName,number,STATUS,title,imgUrl,equipmentCode,insertTime,stress,temperature FROM (SELECT id,genreId,genreName,number,STATUS,title,imgUrl,equipmentCode,insertTime,stress,temperature FROM zrzk_total ORDER BY insertTime DESC) a GROUP BY genreId\n ")
+    @Select(value = "SELECT id,genreId,genreName,number,STATUS,title,imgUrl,equipmentCode,insertTime,stressNum,temperatureNum FROM (SELECT id,genreId,genreName,number,STATUS,title,imgUrl,equipmentCode,insertTime,stressNum,temperatureNum FROM zrzk_total ORDER BY insertTime DESC) a GROUP BY genreId ")
     List<WaterMeter> findAll();
 
     /**

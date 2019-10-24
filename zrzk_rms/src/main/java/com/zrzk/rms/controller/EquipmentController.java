@@ -25,12 +25,19 @@ public class EquipmentController {
     public Result findAll(String paramsJson){
         JSONObject jsonObject = JSON.parseObject(paramsJson);
         QueryParams params = JSON.toJavaObject(jsonObject, QueryParams.class);
-        if(params.getCurrent()==null||params.getCurrent()<1){
+        if(params==null){
+            params = new QueryParams();
             params.setCurrent(1);
-        }
-        if(params.getSize()==null||params.getSize()<1){
             params.setSize(10);
+        }else {
+            if(params.getCurrent()==null||params.getCurrent()<1){
+                params.setCurrent(1);
+            }
+            if(params.getSize()==null||params.getSize()<1){
+                params.setSize(10);
+            }
         }
+
 
         List<Equipment> equipmentList = equipmentService.findAll(params);
         if(equipmentList==null||equipmentList.size()<=0){

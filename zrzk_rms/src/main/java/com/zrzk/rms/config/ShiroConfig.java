@@ -1,12 +1,14 @@
 package com.zrzk.rms.config;
 
 import com.zrzk.rms.shiro.CustomRealm;
+import org.apache.catalina.connector.Request;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +18,8 @@ import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
+
+
     //不加这个注解不生效，具体不详
     @Bean
     @ConditionalOnMissingBean
@@ -40,11 +44,13 @@ public class ShiroConfig {
         return securityManager;
     }
 
+
     //Filter工厂，设置对应的过滤条件和跳转条件
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
+
         Map<String, String> map = new HashMap<>();
         // anon : 放行
         map.put("/login.html","anon");

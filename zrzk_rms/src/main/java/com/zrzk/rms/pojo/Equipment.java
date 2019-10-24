@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @TableName("equipment")
 public class Equipment implements Serializable {
@@ -20,7 +21,7 @@ public class Equipment implements Serializable {
     @TableField("equipment_type")
     private String equipmentType;
 
-    //编号
+    //设备编号
     @TableField("equipment_code")
     private String equipmentCode;
 
@@ -33,7 +34,7 @@ public class Equipment implements Serializable {
 
     //最后上报时间
     @TableField("report_time")
-    private String reportTime;
+    private Date reportTime;
 
     //报警
     private String alert;
@@ -102,11 +103,11 @@ public class Equipment implements Serializable {
         this.imei = imei;
     }
 
-    public String getReportTime() {
+    public Date getReportTime() {
         return reportTime;
     }
 
-    public void setReportTime(String reportTime) {
+    public void setReportTime(Date reportTime) {
         this.reportTime = reportTime;
     }
 
