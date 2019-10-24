@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zrzk.rms.mapper.EquipmentMapper">
+    <!-- 查询所有设备最新的一条数据/条件查询/分页查询/ -->
+    <select id="findAllNew" resultType="com.zrzk.rms.pojo.Equipment" parameterType="com.zrzk.rms.pojo.QueryParams">
+SELECT id,alert,equipment_code,latitude,imei,employer,equipment_name,device_id,platform,equipment_type,longitude,STATUS,report_time FROM (SELECT id,alert,equipment_code,latitude,imei,employer,equipment_name,device_id,platform,equipment_type,longitude,STATUS,report_time FROM equipment ORDER BY report_time DESC) a
+    <where>
+    <if test="employer!=null and employer!='' ">
+        a.employer=#{employer}
+    </if>
+    <if test="equipmentType!=null and equipmentType!='' ">
+        a.equipment_type=#{equipmentType}
+    </if>
+    <if test="equipmentCode!=null and equipmentCode!='' ">
+        a.equipment_code=#{equipmentCode}
+    </if>
+    <if test="equipmentName!=null and equipmentName!='' ">
+        a.equipment_name=#{equipmentName}
+    </if>
+    <if test="platform!=null and platform!='' ">
+        a.platform=#{platform}
+    </if>
+    </where>
+  GROUP BY equipment_code
+    </select>
+</mapper>

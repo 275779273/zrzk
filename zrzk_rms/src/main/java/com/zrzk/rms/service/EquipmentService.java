@@ -1,9 +1,11 @@
 package com.zrzk.rms.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zrzk.pojo.Equipment;
+import com.zrzk.rms.pojo.Equipment;
+import com.zrzk.rms.pojo.QueryParams;
+
+import java.util.List;
 
 
 public interface EquipmentService {
-    Page<Equipment> findAll(long current,long size);
+    List<Equipment> findAll(QueryParams queryParams);
 }

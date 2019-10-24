@@ -25,6 +25,8 @@ public class LoginController {
         //测试当前用户是否已经认证
         if(!subject.isAuthenticated()){
             UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+            //
+            token.setRememberMe(true);
             try {
                 //进行验证，这里可以捕获异常，然后返回对应信息
                 subject.login(token);
