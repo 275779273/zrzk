@@ -42,10 +42,6 @@ public class WaterMeterController {
      */
     @RequestMapping("/save")
     public Result saveWaterMeter(WaterMeter waterMeter) {
-        while (waterMeter==null){
-            System.out.println("0");
-        }
-        System.out.println("1");
         Integer integer = waterMeterService.save(waterMeter);
         if (integer > 0) {
             return new Result(true, "添加数据成功");

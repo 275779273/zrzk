@@ -1,40 +1,62 @@
 package com.zrzk.pojo;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.io.Serializable;
+import java.util.Date;
+
+@TableName("equipment")
 public class Equipment implements Serializable {
     //id
+    @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
 
     //所在机构
     private String employer;
 
     //设备类别
+    @TableField("equipment_type")
     private String equipmentType;
 
-    //编号
+    //设备编号
+    @TableField("equipment_code")
     private String equipmentCode;
 
     //设备名称
+    @TableField("equipment_name")
     private String equipmentName;
 
-    //
+    //imei
     private String imei;
 
     //最后上报时间
-    private String reportTime;
+    @TableField("report_time")
+    private Date reportTime;
 
     //报警
     private String alert;
 
     //状态
-    private String status;
+    private Integer status;
+
+    @TableField(exist = false)  //数据库中没有这个字段
+    private String statusStr;
 
     //上游平台
     private String platform;
 
     //DeviceID
+    @TableField("device_id")
     private String deviceId;
+
+    //经度
+    private String longitude;
+
+    //纬度
+    private String latitude;
 
     public Integer getId() {
         return id;
@@ -84,11 +106,11 @@ public class Equipment implements Serializable {
         this.imei = imei;
     }
 
-    public String getReportTime() {
+    public Date getReportTime() {
         return reportTime;
     }
 
-    public void setReportTime(String reportTime) {
+    public void setReportTime(Date reportTime) {
         this.reportTime = reportTime;
     }
 
@@ -100,12 +122,27 @@ public class Equipment implements Serializable {
         this.alert = alert;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getStatusStr() {
+        if(status!=null){
+            if(status==0){
+                statusStr="正常";
+            }else if(status==1){
+                statusStr="异常";
+            }
+        }
+        return statusStr;
+    }
+
+    public void setStatusStr(String statusStr) {
+        this.statusStr = statusStr;
     }
 
     public String getPlatform() {
@@ -124,6 +161,22 @@ public class Equipment implements Serializable {
         this.deviceId = deviceId;
     }
 
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
     @Override
     public String toString() {
         return "Equipment{" +
@@ -133,11 +186,14 @@ public class Equipment implements Serializable {
                 ", equipmentCode='" + equipmentCode + '\'' +
                 ", equipmentName='" + equipmentName + '\'' +
                 ", imei='" + imei + '\'' +
-                ", reportTime='" + reportTime + '\'' +
+                ", reportTime=" + reportTime +
                 ", alert='" + alert + '\'' +
-                ", status='" + status + '\'' +
+                ", status=" + status +
+                ", statusStr='" + statusStr + '\'' +
                 ", platform='" + platform + '\'' +
                 ", deviceId='" + deviceId + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", latitude='" + latitude + '\'' +
                 '}';
     }
 }

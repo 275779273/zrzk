@@ -29,7 +29,7 @@ public class Equipment implements Serializable {
     @TableField("equipment_name")
     private String equipmentName;
 
-    //
+    //imei
     private String imei;
 
     //最后上报时间
@@ -40,7 +40,10 @@ public class Equipment implements Serializable {
     private String alert;
 
     //状态
-    private String status;
+    private Integer status;
+
+    @TableField(exist = false)  //数据库中没有这个字段
+    private String statusStr;
 
     //上游平台
     private String platform;
@@ -119,12 +122,27 @@ public class Equipment implements Serializable {
         this.alert = alert;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getStatusStr() {
+        if(status!=null){
+            if(status==0){
+                statusStr="正常";
+            }else if(status==1){
+                statusStr="异常";
+            }
+        }
+        return statusStr;
+    }
+
+    public void setStatusStr(String statusStr) {
+        this.statusStr = statusStr;
     }
 
     public String getPlatform() {
@@ -168,9 +186,10 @@ public class Equipment implements Serializable {
                 ", equipmentCode='" + equipmentCode + '\'' +
                 ", equipmentName='" + equipmentName + '\'' +
                 ", imei='" + imei + '\'' +
-                ", reportTime='" + reportTime + '\'' +
+                ", reportTime=" + reportTime +
                 ", alert='" + alert + '\'' +
-                ", status='" + status + '\'' +
+                ", status=" + status +
+                ", statusStr='" + statusStr + '\'' +
                 ", platform='" + platform + '\'' +
                 ", deviceId='" + deviceId + '\'' +
                 ", longitude='" + longitude + '\'' +

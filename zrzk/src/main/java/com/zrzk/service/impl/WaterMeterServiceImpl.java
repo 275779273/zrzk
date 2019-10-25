@@ -1,10 +1,13 @@
 package com.zrzk.service.impl;
 
+import com.zrzk.dao.EquipmentDao;
+import com.zrzk.pojo.Equipment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.zrzk.dao.WaterMeterDao;
 import com.zrzk.pojo.WaterMeter;
 import com.zrzk.service.WaterMeterService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +24,9 @@ public class WaterMeterServiceImpl implements WaterMeterService {
 
     @Autowired
     private WaterMeterDao waterMeterDao;
+
+    @Autowired
+    private EquipmentDao equipmentDao;
 
     @Override
     public List findAll() {
@@ -110,6 +116,7 @@ public class WaterMeterServiceImpl implements WaterMeterService {
      * @return  int
      */
     @Override
+    @Transactional
     public Integer saveTotal(List<Integer> genreList, List<Double> totalList) {
         WaterMeter waterMeter = new WaterMeter();
         waterMeter.setStatus(1);
@@ -125,7 +132,37 @@ public class WaterMeterServiceImpl implements WaterMeterService {
             waterMeter.setGenreName(genreNames[genreList.get(i)]);
             waterMeter.setEquipmentCode(codes[genreList.get(i)]);
             integer = waterMeterDao.saveTotal(waterMeter);
+            //
+            Equipment equipment = new Equipment();
+            //所在机构
+            equipment.setEmployer("0109中润智控");
+            //设备类别
+            equipment.setEquipmentType("智能远传水表");
+            //设备编号
+            equipment.setEquipmentCode(codes[genreList.get(i)]);
+            //设备名称
+            equipment.setEquipmentName(genreNames[genreList.get(i)]);
+            //imei
+            equipment.setImei("152645565215896");
+            //最后上报时间
+            equipment.setReportTime(new Date());
+            //报警
+            equipment.setAlert("无");
+            //状态
+            equipment.setStatus(0);
+            //上游平台
+            equipment.setPlatform("电信");
+            //DeviceID
+            equipment.setDeviceId(codes[genreList.get(i)]);
+            //经度
+            equipment.setLongitude("119.32006");
+            //纬度
+            equipment.setLatitude("26.08375");
+
+            int insert = equipmentDao.insert(equipment);
         }
+
+
         return integer;
     }
 
