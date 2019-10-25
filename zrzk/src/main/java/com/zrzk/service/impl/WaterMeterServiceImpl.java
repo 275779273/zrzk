@@ -14,8 +14,8 @@ import java.util.List;
 
 @Service
 public class WaterMeterServiceImpl implements WaterMeterService {
-
-    private String[] genreNames = {"索引0占位符", "路面积水", "开盖报警器", "井下液位计", "小水表", "大水表", "压力变送器", "电磁流量计", "不锈钢用户水表", "主管道水表DN50", "阀控水表", "用户水表", "电磁流量计DN50"};
+    //8不锈钢用户水表,10阀控水表,11用户水表
+    private String[] genreNames = {"索引0占位符", "路面积水", "开盖报警器", "井下液位计", "小水表", "大水表", "压力变送器", "电磁流量计", "DN15小水表(市政)", "主管道水表DN50", "DN15小水表(社区)", "DN15小水表(工厂)", "电磁流量计DN50"};
 
     private String[] codes = {"", "1631456", "2463218", "3654923", "4354924", "5648324", "6513464", "7653497", "8695101", "9123942", "1068277", "1157513", "1219628"};
 
@@ -61,7 +61,7 @@ public class WaterMeterServiceImpl implements WaterMeterService {
 
     @Override
     public List findByGenreId(Integer genreId) {
-        List<WaterMeter> waterMeterList = null;
+        List<WaterMeter> waterMeterList ;
 
 
         if (genreId==6 || genreId == 8 || genreId == 9 || genreId == 10 || genreId == 11 || genreId == 12) {    //大水表,小水表
@@ -105,9 +105,9 @@ public class WaterMeterServiceImpl implements WaterMeterService {
     /**
      * 根据genreId添加每个小水表,大水表的总和(手动添加数据用)
      *
-     * @param genreList
-     * @param totalList
-     * @return
+     * @param genreList 设备类型ID集合
+     * @param totalList 设备数据集合
+     * @return  int
      */
     @Override
     public Integer saveTotal(List<Integer> genreList, List<Double> totalList) {
@@ -149,8 +149,8 @@ public class WaterMeterServiceImpl implements WaterMeterService {
         //前一天凌晨0点的字符串
         String startTime = pre.substring(0, 10) + " 00:00:00";
 
-        Date date = sdf.parse(startTime);
-        return date;
+        //Date date = sdf.parse(startTime);
+        return sdf.parse(startTime);
         } catch (ParseException e) {
             e.printStackTrace();
         }

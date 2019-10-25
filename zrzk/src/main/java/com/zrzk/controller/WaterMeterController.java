@@ -1,6 +1,5 @@
 package com.zrzk.controller;
 
-import com.zrzk.dao.WaterMeterDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +18,6 @@ import java.util.*;
 public class WaterMeterController {
     @Autowired
     private WaterMeterServiceImpl waterMeterService;
-
-    @Autowired
-    private WaterMeterDao waterMeterDao;
 
     /**
      * 查询所有设备最新的数据
