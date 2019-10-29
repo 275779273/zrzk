@@ -23,19 +23,19 @@
         SELECT id,alert,equipment_code,latitude,imei,employer,equipment_name,device_id,platform,equipment_type,longitude,STATUS,report_time FROM (SELECT id,alert,equipment_code,latitude,imei,employer,equipment_name,device_id,platform,equipment_type,longitude,STATUS,report_time FROM equipment ORDER BY report_time DESC) a
             <where>
             <if test="employer!=null and employer!='' ">
-                a.employer=#{employer}
+                and a.employer=#{employer}
             </if>
             <if test="equipmentType!=null and equipmentType!='' ">
-                a.equipment_type=#{equipmentType}
+                and a.equipment_type=#{equipmentType}
             </if>
             <if test="equipmentCode!=null and equipmentCode!='' ">
-                a.equipment_code=#{equipmentCode}
+                and a.equipment_code=#{equipmentCode}
             </if>
             <if test="equipmentName!=null and equipmentName!='' ">
-                a.equipment_name=#{equipmentName}
+                and a.equipment_name=#{equipmentName}
             </if>
             <if test="platform!=null and platform!='' ">
-                a.platform=#{platform}
+                and a.platform=#{platform}
             </if>
             </where>
           GROUP BY equipment_code

@@ -21,6 +21,27 @@ public class QueryParams implements Serializable {
     //运营商
     private String platform;
 
+    public QueryParams() {
+    }
+
+    public QueryParams(String employer, String equipmentType, String equipmentCode, String equipmentName, String platform) {
+        this.employer = employer;
+        this.equipmentType = equipmentType;
+        this.equipmentCode = equipmentCode;
+        this.equipmentName = equipmentName;
+        this.platform = platform;
+    }
+
+    public QueryParams(Integer current, Integer size, String employer, String equipmentType, String equipmentCode, String equipmentName, String platform) {
+        this.current = current;
+        this.size = size;
+        this.employer = employer;
+        this.equipmentType = equipmentType;
+        this.equipmentCode = equipmentCode;
+        this.equipmentName = equipmentName;
+        this.platform = platform;
+    }
+
     public Integer getCurrent() {
         return current;
     }

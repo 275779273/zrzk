@@ -4,14 +4,18 @@ import com.zrzk.rms.pojo.Result;
 import com.zrzk.rms.pojo.District;
 import com.zrzk.rms.service.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
 @RequestMapping("/district")
+//解决跨域问题
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class DistrictController {
 
     @Autowired
@@ -32,7 +36,7 @@ public class DistrictController {
     }
 
     @RequestMapping("/city/{id}")
-    public Result findCityById(@PathVariable(value = "id",required = true) Integer id){
+    public Result findCityById(@PathVariable(value = "id",required = true) Integer id,HttpServletResponse response){
         List<District> cityList = cityService.findCityById(id);
         if(cityList==null||cityList.size()<=0){
             return new Result(false,"为查询到数据");

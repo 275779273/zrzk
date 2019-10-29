@@ -8,22 +8,22 @@ import com.zrzk.rms.pojo.QueryParams;
 import com.zrzk.rms.pojo.Result;
 import com.zrzk.rms.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/equipment")
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class EquipmentController {
 
     @Autowired
     private EquipmentService equipmentService;
 
     @RequestMapping("/findAll")
-    public Result findAll(String paramsJson){
-        JSONObject jsonObject = JSON.parseObject(paramsJson);
+    public Result findAll(@RequestBody(required = false)String data){
+        JSONObject jsonObject = JSON.parseObject(data);
         QueryParams params = JSON.toJavaObject(jsonObject, QueryParams.class);
         if(params==null){
             params = new QueryParams();

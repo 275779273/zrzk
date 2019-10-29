@@ -53,24 +53,27 @@ public class ShiroConfig {
 
         Map<String, String> map = new HashMap<>();
         // anon : 放行
-        map.put("/login.html","anon");
+        map.put("/login","anon");
+        //map.put("/index.html","anon");
         map.put("/user/login","anon");
         map.put("/static/**","anon");
+        map.put("/ajaxLogin","anon");
         map.put("/css/**", "anon");
         map.put("/js/**", "anon");
         map.put("/fonts/**", "anon");
-        map.put("/ui/**", "anon");
+        map.put("/img/**", "anon");
+        map.put("/media/**", "anon");
         //登出
         map.put("/logout", "logout");
         //对所有用户认证
         map.put("/**", "authc");
         //map.put("/**","anon");
         //登录
-        shiroFilterFactoryBean.setLoginUrl("/login.html");
+        shiroFilterFactoryBean.setLoginUrl("/login");
         //首页
         shiroFilterFactoryBean.setSuccessUrl("/index.html");
         //错误页面，认证不通过跳转
-        shiroFilterFactoryBean.setUnauthorizedUrl("/error");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/error.html");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;
     }

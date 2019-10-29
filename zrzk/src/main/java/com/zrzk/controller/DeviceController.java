@@ -30,4 +30,10 @@ public class DeviceController {
             return new Result(false,"添加失败");
         }
     }
+
+    @RequestMapping("/get")
+    public String get(@RequestBody String getBody){
+        System.out.println("getBody = " + getBody);
+        return "访问成功";
+    }
 }
