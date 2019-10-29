@@ -1,19 +1,19 @@
 package com.zrzk.rms.config;
 
 import com.zrzk.rms.shiro.CustomRealm;
-import org.apache.catalina.connector.Request;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.json.JSONObject;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Configuration
@@ -51,13 +51,14 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
-        Map<String, String> map = new HashMap<>();
+
+        Map<String, String> map = new LinkedHashMap<>();
         // anon : 放行
-        map.put("/login","anon");
+
         //map.put("/index.html","anon");
-        map.put("/user/login","anon");
         map.put("/static/**","anon");
-        map.put("/ajaxLogin","anon");
+        map.put("/user/login","anon");
+        map.put("/index.html","anon");
         map.put("/css/**", "anon");
         map.put("/js/**", "anon");
         map.put("/fonts/**", "anon");
@@ -69,9 +70,9 @@ public class ShiroConfig {
         map.put("/**", "authc");
         //map.put("/**","anon");
         //登录
-        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/index.html");
         //首页
-        shiroFilterFactoryBean.setSuccessUrl("/index.html");
+        //shiroFilterFactoryBean.setSuccessUrl("/index.html");
         //错误页面，认证不通过跳转
         shiroFilterFactoryBean.setUnauthorizedUrl("/error.html");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
