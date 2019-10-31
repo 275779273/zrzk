@@ -1,8 +1,11 @@
 package com.zrzk.rms.pojo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 //查询参数实体类
+@Data
 public class QueryParams implements Serializable {
 
     //当前页码
@@ -21,80 +24,4 @@ public class QueryParams implements Serializable {
     //运营商
     private String platform;
 
-    public QueryParams() {
-    }
-
-    public QueryParams(String employer, String equipmentType, String equipmentCode, String equipmentName, String platform) {
-        this.employer = employer;
-        this.equipmentType = equipmentType;
-        this.equipmentCode = equipmentCode;
-        this.equipmentName = equipmentName;
-        this.platform = platform;
-    }
-
-    public QueryParams(Integer current, Integer size, String employer, String equipmentType, String equipmentCode, String equipmentName, String platform) {
-        this.current = current;
-        this.size = size;
-        this.employer = employer;
-        this.equipmentType = equipmentType;
-        this.equipmentCode = equipmentCode;
-        this.equipmentName = equipmentName;
-        this.platform = platform;
-    }
-
-    public Integer getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(Integer current) {
-        this.current = current;
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
-
-    public String getEmployer() {
-        return employer;
-    }
-
-    public void setEmployer(String employer) {
-        this.employer = employer;
-    }
-
-    public String getEquipmentType() {
-        return equipmentType;
-    }
-
-    public void setEquipmentType(String equipmentType) {
-        this.equipmentType = equipmentType;
-    }
-
-    public String getEquipmentCode() {
-        return equipmentCode;
-    }
-
-    public void setEquipmentCode(String equipmentCode) {
-        this.equipmentCode = equipmentCode;
-    }
-
-    public String getEquipmentName() {
-        return equipmentName;
-    }
-
-    public void setEquipmentName(String equipmentName) {
-        this.equipmentName = equipmentName;
-    }
-
-    public String getPlatform() {
-        return platform;
-    }
-
-    public void setPlatform(String platform) {
-        this.platform = platform;
-    }
 }

@@ -40,6 +40,7 @@ public class WaterMeterServiceImpl implements WaterMeterService {
     }
 
     @Override
+    @Transactional
     public Integer save(WaterMeter waterMeter) {
         waterMeter.setInsertTime(new Date());
         return waterMeterDao.save(waterMeter);
@@ -51,11 +52,13 @@ public class WaterMeterServiceImpl implements WaterMeterService {
     }
 
     @Override
+    @Transactional
     public Integer deleteAll() {
         return waterMeterDao.deleteAll();
     }
 
     @Override
+    @Transactional
     public Integer deleteById(Integer id) {
         return waterMeterDao.deleteById(id);
     }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.zrzk.dao.CoverDao;
 import com.zrzk.pojo.Cover;
 import com.zrzk.service.CoverService;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,7 @@ public class CoverServiceImpl implements CoverService {
     }
 
     @Override
+    @Transactional
     public Integer save(Cover cover) {
         cover.setInsertTime(new Date());
         return coverDao.save(cover);
@@ -31,11 +33,13 @@ public class CoverServiceImpl implements CoverService {
     }
 
     @Override
+    @Transactional
     public Integer deleteById(Integer id) {
         return coverDao.deleteById(id);
     }
 
     @Override
+    @Transactional
     public Integer deleteAll() {
         return coverDao.deleteAll();
     }

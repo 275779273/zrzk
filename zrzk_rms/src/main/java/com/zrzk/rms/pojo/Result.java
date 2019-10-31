@@ -14,6 +14,7 @@ public class Result implements Serializable {
     //private List list=new ArrayList();
     private Object obj;
 
+    private String token;
 
     public Result() {
     }
@@ -29,5 +30,10 @@ public class Result implements Serializable {
         this.obj = obj;
     }
 
-
+    public Result(Boolean success, String message, Object obj, String token) {
+        this.success = success;
+        this.message = message;
+        this.obj = obj;
+        this.token = token;
+    }
 }

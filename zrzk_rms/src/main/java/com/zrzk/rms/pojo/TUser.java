@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiParam;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,26 +15,32 @@ import java.util.List;
 import java.util.Set;
 
 @Data
+@ApiModel("user实体")
 @TableName("t_user")
 public class TUser implements Serializable {
 
-    @TableId(value = "id",type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     //账号
+    @ApiParam(value = "账号", required = true)
     @TableField(value = "username")
     private String userName;
 
     //密码
+    @ApiParam(value = "密码", required = true)
     @TableField("password")
     private String passWord;
 
     //用户名
+    @ApiParam(value = "用户名称")
     private String loginName;
 
     //注册时间
+    @ApiParam(value = "注册时间")
     private Date registerTime;
 
+    @TableField(exist = false)
     private List<TRole> roles;
 
     public Integer getId() {
@@ -95,3 +103,4 @@ public class TUser implements Serializable {
                 '}';
     }
 }
+

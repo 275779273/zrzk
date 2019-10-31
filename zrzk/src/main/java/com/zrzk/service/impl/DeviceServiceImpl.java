@@ -5,7 +5,7 @@ import com.zrzk.pojo.Device;
 import com.zrzk.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -14,6 +14,7 @@ public class DeviceServiceImpl implements DeviceService {
     private DeviceDao deviceDao;
 
     @Override
+    @Transactional
     public Integer save(Device device) {
         if (device.getColumn01().equals("130")){
             return deviceDao.save(device);
