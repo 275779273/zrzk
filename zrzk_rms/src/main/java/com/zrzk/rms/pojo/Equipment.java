@@ -58,6 +58,9 @@ public class Equipment implements Serializable {
     //纬度
     private String latitude;
 
+    //水量
+    private Double amount;
+
     public Integer getId() {
         return id;
     }
@@ -177,6 +180,14 @@ public class Equipment implements Serializable {
         this.latitude = latitude;
     }
 
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
     @Override
     public String toString() {
         return "Equipment{" +
@@ -194,6 +205,7 @@ public class Equipment implements Serializable {
                 ", deviceId='" + deviceId + '\'' +
                 ", longitude='" + longitude + '\'' +
                 ", latitude='" + latitude + '\'' +
+                ", amount=" + amount +
                 '}';
     }
 }

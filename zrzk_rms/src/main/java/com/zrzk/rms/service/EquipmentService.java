@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface EquipmentService {
     List<Equipment> findAll(QueryParams queryParams);
+
+    Integer save(Equipment equipment);
 }

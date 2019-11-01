@@ -1,4 +1,4 @@
-package com.zrzk.rms.tokenUtils;
+package com.zrzk.rms.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,8 +8,7 @@ import sun.misc.BASE64Encoder;
 
 /**
  * 生成Token的工具类
- * @author zhous
- * @since 2018-2-23 13:59:27
+ *
  *
  */
 public class TokenProccessor {

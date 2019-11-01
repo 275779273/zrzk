@@ -7,18 +7,18 @@ import com.zrzk.rms.pojo.LoginParams;
 import com.zrzk.rms.pojo.Result;
 import com.zrzk.rms.pojo.TUser;
 import com.zrzk.rms.service.UserService;
-import com.zrzk.rms.shiro.CustomRealm;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +29,8 @@ public class UserController implements ApiUserController {
 
     @Autowired
     private UserService userService;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     /**
      * 用户登录
@@ -60,6 +62,7 @@ public class UserController implements ApiUserController {
                 TUser user = userService.getUserByName(username);
                 //token存入session
                 //request.getSession().setAttribute("token", tokenService);
+                logger.info("登录成功");
                 return new Result(true, "登录成功", user, tokenService);
                /* SavedRequest savedRequest = WebUtils.getSavedRequest(request);
                 if (savedRequest != null) {
@@ -69,12 +72,16 @@ public class UserController implements ApiUserController {
 //            subject.checkRole("admin");
 //            subject.checkPermissions("query", "add");
             } catch (IncorrectCredentialsException e) {
+                logger.error(e.getMessage());
                 return new Result(false, "密码错误");
             } catch (LockedAccountException e) {
+                logger.error(e.getMessage());
                 return new Result(false, "登录失败，该用户已被冻结");
             } catch (AuthenticationException e) {
+                logger.error(e.getMessage());
                 return new Result(false, "该用户不存在");
             } catch (Exception e) {
+                logger.error(e.getMessage());
                 e.printStackTrace();
             }
         }

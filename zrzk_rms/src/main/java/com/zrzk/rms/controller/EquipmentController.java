@@ -45,13 +45,23 @@ public class EquipmentController implements ApiEquipmentController {
             }
         }
 
-
         List<Equipment> equipmentList = equipmentService.findAll(params);
         if (equipmentList == null || equipmentList.size() <= 0) {
             return new Result(false, "未查询到数据");
         } else {
             PageInfo<Equipment> info = new PageInfo<>(equipmentList);
             return new Result(true, "查询到数据", info);
+        }
+    }
+
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    public Result save(@RequestBody String params){
+        Equipment equipment = JSON.parseObject(params, Equipment.class);
+        Integer integer = equipmentService.save(equipment);
+        if(integer!=null&&integer>0){
+            return new Result(true,"添加成功");
+        }else {
+            return new Result(false,"添加失败");
         }
     }
 }

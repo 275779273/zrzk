@@ -1,4 +1,4 @@
-package com.zrzk.rms.shiro;
+package com.zrzk.rms.realm;
 
 import com.zrzk.rms.pojo.TPermission;
 import com.zrzk.rms.pojo.TRole;

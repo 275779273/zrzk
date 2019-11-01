@@ -11,7 +11,9 @@ server:
 
 mybatis-plus:
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #开启日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #开启sql日志
     map-underscore-to-camel-case: false                     #关闭驼峰自动转下划线
 
-
+logging:
+  config: classpath:log/logback-spring.xml    #日志的配置文件
+  #path: D:\idea\IdeaProjects\zrzk_parent\zrzk_rms\src\main\resources  #日志输出的路径

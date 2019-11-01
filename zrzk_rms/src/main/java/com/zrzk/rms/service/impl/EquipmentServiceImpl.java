@@ -23,4 +23,9 @@ public class EquipmentServiceImpl implements EquipmentService {
         PageHelper.startPage(queryParams.getCurrent(), queryParams.getSize());
         return equipmentMapper.findAllNew(queryParams);
     }
+
+    @Override
+    public Integer save(Equipment equipment) {
+        return equipmentMapper.insert(equipment);
+    }
 }
