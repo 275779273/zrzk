@@ -106,18 +106,18 @@ public class UserController implements ApiUserController {
 
     /**
      * 修改用户信息
-     * @param params
+     * @param params  //String userName, String oldPassWord, String newPassWord, String loginName
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public Result update(@RequestBody String params) {        //String userName, String oldPassWord, String newPassWord, String loginName
+    public Result update(@RequestBody String params) {
         Map<String, String> map = JSON.parseObject(params, HashMap.class);
-        Integer update = userService.update(map);
-        if (update == null || update <= 0) {
+        TUser user = userService.update(map);
+        if (user == null) {
             return new Result(false, "修改失败");
         } else {
-            return new Result(true, "修改成功");
+            return new Result(true, "修改成功",user);
         }
     }
 

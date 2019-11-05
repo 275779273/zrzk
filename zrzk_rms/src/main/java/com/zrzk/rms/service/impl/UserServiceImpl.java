@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public Integer update(Map<String,String> map) {
+    public TUser update(Map<String, String> map) {
         QueryWrapper<TUser> wrapper = new QueryWrapper<>();
         TUser tUser = new TUser();
         tUser.setUserName(map.get("userName"));
@@ -31,10 +31,13 @@ public class UserServiceImpl implements UserService {
             wrapper1.eq("id", tUser1.getId());
             tUser.setPassWord(map.get("newPassWord"));
             tUser.setLoginName(map.get("loginName"));
-            return userMapper.update(tUser, wrapper1);
-        } else {     //不存在
-            return null;
+            int integer = userMapper.update(tUser, wrapper1);
+            if (integer > 0) {  //修改成功
+                return tUser;
+            }
         }
+        //不存在
+        return null;
     }
 
     @Override
@@ -45,6 +48,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 根据账号查询用户信息(角色/权限)
+     *
      * @param username
      * @return
      */

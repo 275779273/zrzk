@@ -1,0 +1,13 @@
+2019-10-31 17:19:24.597 [http-nio-8084-exec-1] ERROR com.zrzk.rms.controller.UserController - 登录成功
+2019-10-31 17:28:58.893 [http-nio-8084-exec-1] ERROR com.zrzk.rms.controller.UserController - 111Submitted credentials for token [org.apache.shiro.authc.UsernamePasswordToken - tom, rememberMe=false] did not match the expected credentials.
+2019-10-31 17:28:58.893 [http-nio-8084-exec-1] ERROR com.zrzk.rms.controller.UserController - 222Submitted credentials for token [org.apache.shiro.authc.UsernamePasswordToken - tom, rememberMe=false] did not match the expected credentials.
+2019-10-31 17:28:58.893 [http-nio-8084-exec-1] ERROR com.zrzk.rms.controller.UserController - 333null
+2019-10-31 17:28:58.894 [http-nio-8084-exec-1] ERROR com.zrzk.rms.controller.UserController - 444org.apache.shiro.authc.IncorrectCredentialsException: Submitted credentials for token [org.apache.shiro.authc.UsernamePasswordToken - tom, rememberMe=false] did not match the expected credentials.
+2019-10-31 17:28:58.894 [http-nio-8084-exec-1] ERROR com.zrzk.rms.controller.UserController - 555[Ljava.lang.StackTraceElement;@4341bba
+2019-10-31 17:28:58.894 [http-nio-8084-exec-1] ERROR com.zrzk.rms.controller.UserController - 666[Ljava.lang.Throwable;@335e5f7f
+2019-10-31 17:30:45.743 [http-nio-8084-exec-2] ERROR com.zrzk.rms.controller.UserController - 111Submitted credentials for token [org.apache.shiro.authc.UsernamePasswordToken - tom, rememberMe=false] did not match the expected credentials.
+2019-10-31 17:30:45.744 [http-nio-8084-exec-2] ERROR com.zrzk.rms.controller.UserController - 222Submitted credentials for token [org.apache.shiro.authc.UsernamePasswordToken - tom, rememberMe=false] did not match the expected credentials.
+2019-10-31 17:30:45.744 [http-nio-8084-exec-2] ERROR com.zrzk.rms.controller.UserController - 333null
+2019-10-31 17:30:45.744 [http-nio-8084-exec-2] ERROR com.zrzk.rms.controller.UserController - 444org.apache.shiro.authc.IncorrectCredentialsException: Submitted credentials for token [org.apache.shiro.authc.UsernamePasswordToken - tom, rememberMe=false] did not match the expected credentials.
+2019-10-31 17:30:45.744 [http-nio-8084-exec-2] ERROR com.zrzk.rms.controller.UserController - 555[Ljava.lang.StackTraceElement;@b12817a
+2019-10-31 17:30:45.744 [http-nio-8084-exec-2] ERROR com.zrzk.rms.controller.UserController - 666[Ljava.lang.Throwable;@7bbedb4b
